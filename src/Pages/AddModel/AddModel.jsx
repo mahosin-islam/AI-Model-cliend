@@ -2,9 +2,7 @@ import React from 'react';
 
 const AddModel = () => {
     return (
-        <div>
-            <h2>addmodel pages</h2>
-        </div>
+       <h2>hello produc</h2>
     );
 };
 

@@ -1,13 +1,29 @@
-import React from 'react';
-import { useLocation } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { } from 'react-router';
+import ModelCard from '../../Componets/ModelCard';
 
 const AllModel = () => {
-    const location=useLocation()
-    console.log(location)
+     const [model, setModel] = useState([]);
+
+console.log(model);
+  useEffect(() => {
+    fetch("http://localhost:4000/model")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setModel(data);
+      });
+  }, []);
+
     return (
-        <div>
-            <h2>Allmodel pages</h2>
-        </div>
+         <div className="">
+      <h2 className="py-2 text-2xl text-center">Al Model</h2>
+      <div className="grid md:grid-cols-3 gap-3 sm:grid-cols-2">
+        {
+            model.map(card=><ModelCard key={card._id} card={card}></ModelCard>)
+        }
+      </div>
+    </div>
     );
 };
 

@@ -1,12 +1,14 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContex } from "../Contexts/AuthContex";
 import { toast } from "react-toastify";
 import { TbLogout } from "react-icons/tb";
+import { Twirl } from "hamburger-react";
 
 const Navbar = () => {
   const { user, setUser, userSingOut } = use(AuthContex);
-  console.log(user);
+   const [humbur, setHumbur]=useState(false)
+
   const hadelSingOut = () => {
     userSingOut()
       .then(() => {
@@ -15,17 +17,21 @@ const Navbar = () => {
       })
       .catch((err) => console.log(err.message));
   };
+  const links =<>
+   <NavLink to="/Home">Home</NavLink>
+          <NavLink to="/Allmodel">All-Model</NavLink>
+          <NavLink to="/Addmodel">Add-Model</NavLink>
+  
+  </>
 
   return (
     <div className="">
-      <div className="  p-3 items-center border-2 w-full flex justify-between mb-2">
+      <div className="  p-3 items-center  w-full flex justify-between mb-2">
         <div>
           <h2 className="text-3xl text-[#9f62f2] font-bold">AI-Models</h2>
         </div>
-        <nav className="flex gap-4">
-          <NavLink to="/Home">Home</NavLink>
-          <NavLink to="/Allmodel">All-Model</NavLink>
-          <NavLink to="/Addmodel">Add-Model</NavLink>
+        <nav className=" gap-4 hidden  md:flex sm:hidden">
+        {links}
         </nav>
         <div className="flex gap-5 items-center">
           <div className="navbar-end gap-3">
@@ -89,10 +95,14 @@ const Navbar = () => {
             )}
           </div>
           <Link to="/register">
-            <button className="btn btn-wide rounded-2xl">Register</button>
+            <button className=" btn btn-wide rounded-2xl">Register</button>
           </Link>
+          <button onClick={()=>setHumbur(!humbur)} className=" md:hidden "><Twirl></Twirl></button>
         </div>
       </div>
+        <div className={`  pl-5 ${humbur?"flex":"hidden"} text-2xl font-semibold gap-4 flex-col md:hidden`}>
+        {links}
+        </div>
     </div>
   );
 };
