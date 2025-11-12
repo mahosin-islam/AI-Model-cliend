@@ -6,7 +6,7 @@ import { auth } from '../Firebages/Firebages';
 export const AuthProvider = ({children}) => {
     const [user, setUser]=useState(null)
     const [loader, setLoader]=useState(true)
-
+    const [thems,setThems]=useState('')
 // singout 
 const userSingOut=()=>{
     setLoader(true)
@@ -52,7 +52,9 @@ useEffect(()=>{
     userSing,
     loader,
     user,
-    setUser
+    setUser,
+    setThems,
+    thems
  }   
 
     return <AuthContex value={userInfo}>

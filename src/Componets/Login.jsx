@@ -82,7 +82,7 @@ const Login = () => {
                     </span>
                   </span>
 
-                  <button className="btn btn-neutral mt-4">LogIn</button>
+                  <button className="bg-gradient-to-r from-[#632ee3]  to-[#9f62f2] px-4 p-1 font-semibold rounded-[4px] text-white">LogIn</button>
 
                   {/* * Google * */}
                   <button

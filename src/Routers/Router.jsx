@@ -10,10 +10,13 @@ import Mymodel from "../Pages/Mymodel/Mymodel";
 import Update from "../Pages/Update/Update";
 import ModelPurchase from "../Pages/ModelPurchase/ModelPurchase";
 import Private from "./Private";
+import PurseDtails from "../Componets/PurseDtails";
+import Error from "../Componets/Error";
 
  export const router =createBrowserRouter([
     {
         path: '/',
+        errorElement: <Error></Error>,
         element:<Root></Root>,
         children:[
             {
@@ -26,25 +29,32 @@ import Private from "./Private";
             },
             {
                 path:'/Allmodel',
-                element:<Private>
+                element:
                     <AllModel></AllModel>
-                </Private>
+    
             },
             {
                 path:'/Addmodel',
-                element:<AddModel></AddModel>
+                element:<Private>
+                    <AddModel></AddModel>
+                </Private>
             },
             {
                 path:'/Mymodel',
-                element:<Mymodel></Mymodel>
+                element:<Private>
+                    <Mymodel></Mymodel>
+                </Private>
             },
             {
-                path:'/upadate',
-                element:<Update></Update>
+              path:'/update/:id',
+               loader:({params})=>fetch(`https://server-side-xi.vercel.app/model/${params.id}`),
+               element:<Update></Update>
             },
             {
                 path:'/ModelPurchase',
-                element:<ModelPurchase></ModelPurchase>
+                element:<Private>
+                    <ModelPurchase></ModelPurchase>
+                </Private>
             },
             {
            path:'Register',
@@ -56,10 +66,21 @@ import Private from "./Private";
 
             },
             {
-                path:"/Dtails",
-                element:<Dtails></Dtails>
+                path:"/Dtails/:id",               
+                element:<Private>
+                    <Dtails></Dtails>
+                </Private>
             },
-            
+            {
+              path: "/PurseDtails/:id",
+              element:<Private>
+                <PurseDtails></PurseDtails>
+              </Private>
+            },
+            {
+                path:'*',
+                element:<Error></Error>
+            }
         ]
     }
 ])

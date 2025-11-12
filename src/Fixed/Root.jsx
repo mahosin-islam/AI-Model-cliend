@@ -6,8 +6,8 @@ import Footer from './Footer';
 const Root = () => {
     return (
         <div>
-            <Navbar></Navbar>
-            <div className='mx-5   min-h-[calc(100vh-200px)]'>
+            <Navbar ></Navbar>
+            <div className=' mt-20 mb-5  min-h-[calc(100vh-200px)]'>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>

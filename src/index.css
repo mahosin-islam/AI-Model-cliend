@@ -3,5 +3,6 @@
 
 .active{
     font-weight: bold;
-    color: red;
+    color: #f1c40f;
+    text-decoration: underline;
 }
