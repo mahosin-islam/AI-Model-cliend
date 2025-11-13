@@ -7,7 +7,6 @@ const ModelPurchase = () => {
     const{user}=use(AuthContex)
     const [purchase, setPurchase]=useState([])
     const [loading,setLoading]=useState(true)
-    console.log(purchase)
     useEffect(()=>{
         fetch(`https://server-side-xi.vercel.app/myPurchase?email=${user.email}`,{
               headers: {
@@ -38,6 +37,9 @@ const ModelPurchase = () => {
           <MixCard key={card._id} card={card}></MixCard>
         ))}
       </div> 
+      <div className="text-2xl text-gray-400 flex justify-center items-center py-10">
+        {purchase.length=='0'?<span>Not Find Your purchase AI mode </span>:""}
+    </div>
         </div>
     );
 };

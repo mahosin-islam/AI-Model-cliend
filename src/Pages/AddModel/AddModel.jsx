@@ -1,9 +1,11 @@
 import React, { use } from "react";
 import { toast } from "react-toastify";
 import { AuthContex } from "../../Contexts/AuthContex";
+import { useNavigate } from "react-router";
 
 const AddModel = () => {
   const { user } = use(AuthContex);
+  const navigate=useNavigate()
   const handelAddModel = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -12,13 +14,11 @@ const AddModel = () => {
     const dataset = e.target.Dataset.value;
     const image = e.target.photo.value;
     const description = e.target.description.value;
-    const purchased = 1;
+    const purchased = 0;
     const createdBy = user.email;
-
     if (!name) {
       return toast("peals set name");
     }
-
     const newData = {
       name,
       framework,
@@ -28,7 +28,7 @@ const AddModel = () => {
       image,
       purchased,
       description,
-      createdAt: new Date(),
+      createdAt: new Date()
     };
     fetch("https://server-side-xi.vercel.app/model", {
       method: "POST",
@@ -40,6 +40,8 @@ const AddModel = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("add success model", data);
+        toast('successfully you could add new AI model')
+        navigate('/')
       })
       .catch((err) => console.log(err));
   };
@@ -49,7 +51,7 @@ const AddModel = () => {
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
-            <h1 className="text-3xl font-bold">Add Model</h1>
+            <h1 className="text-3xl font-bold text-[#9f62f2]">Add Model</h1>
           </div>
           <div className="card bg-base-100 w-full  shrink-0 shadow-2xl">
             <div className="card-body">

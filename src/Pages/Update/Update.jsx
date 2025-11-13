@@ -1,11 +1,12 @@
 import React, { use } from "react";
 import { AuthContex } from "../../Contexts/AuthContex";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Update = () => {
   const { user } = use(AuthContex);
   const data = useLoaderData();
-  console.log(data);
+    const navigate =useNavigate()
   const { _id } = data;
   const handelAddModel = (e) => {
     e.preventDefault();
@@ -17,6 +18,7 @@ const Update = () => {
     const description = e.target.description.value;
     const purchased = 0;
     const createdBy = user.email;
+  
 
     const newData = {
       name,
@@ -27,7 +29,7 @@ const Update = () => {
       image,
       purchased,
       description,
-      createdAt: new Date(),
+     createdAt: new Date()
     };
 
     Object.keys(newData).forEach((key) => {
@@ -46,8 +48,13 @@ const Update = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("add success PATH", data);
+        toast('successfully you could edit model')
+        navigate('/')
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        toast('you path is wrong')
+      });
   };
 
   return (

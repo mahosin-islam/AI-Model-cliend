@@ -1,0 +1,52 @@
+#Slider {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  font-size: 18px;
+
+  /* Center slide text vertically */
+}
+
+.swiper-slide:nth-child(2) {
+  background-image: url("https://i.ibb.co.com/dJcRRLpp/images-2.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+.swiper-slide:nth-child(1) {
+  background-image: url("https://i.ibb.co.com/1frxV7vh/images-3.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.swiper-slide:nth-child(3) {
+  background-image: url("https://i.ibb.co.com/pN7nBsS/download-3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 400px;
+  margin: 20px 0;
+}

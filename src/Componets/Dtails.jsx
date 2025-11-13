@@ -1,14 +1,14 @@
 import React, { use, useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link,  useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { AuthContex } from "../Contexts/AuthContex";
 import { FadeLoader } from "react-spinners";
 
 const Dtails = () => {
   const { user } = use(AuthContex);
-  const [model, setModel]=useState([])
-  const [loader, setLoader]=useState(true)
-  const {id}=useParams()
+  const [model, setModel] = useState([]);
+  const [loader, setLoader] = useState(true);
+  const { id } = useParams();
   const {
     name,
     createdBy,
@@ -22,25 +22,20 @@ const Dtails = () => {
   } = model;
 
   const navigare = useNavigate();
-useEffect(()=>{
-  
- fetch(`https://server-side-xi.vercel.app/model/${id}`,{
-  headers : {
+  useEffect(() => {
+    fetch(`https://server-side-xi.vercel.app/model/${id}`, {
+      headers: {
         authorization: `Beare ${user?.accessToken}`,
       },
- })
- .then(res=>res.json())
- .then(data=>{
- console.log('helo', data)
- setModel(data)
- setLoader(false)
- })
- .catch(err=>console.log(err))
-},[user,id])
-
-
-
-
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("helo", data);
+        setModel(data);
+        setLoader(false);
+      })
+      .catch((err) => console.log(err));
+  }, [user, id]);
 
   const handelDelet = (id) => {
     fetch(`https://server-side-xi.vercel.app/model/${id}`, {
@@ -63,12 +58,12 @@ useEffect(()=>{
       createdBy,
       image,
       purchased,
-      purchased_by:user.email,
+      purchased_by: user.email,
       description,
       createdAt: new Date(),
     };
 
-    fetch("http://localhost:4000/purchase", {
+    fetch("https://server-side-xi.vercel.app/purchase", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +81,7 @@ useEffect(()=>{
       purchased: purchaseded,
     };
 
-    fetch(`http://localhost:4000/model/${_id}`, {
+    fetch(`https://server-side-xi.vercel.app/model/${_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -100,13 +95,12 @@ useEffect(()=>{
       .catch((err) => console.log(err));
   };
 
-
-  
-     if(loader){
-    return <div className="flex justify-center mt-50">
-    <FadeLoader color="#1fc96f" className="text-center" />
-  </div>
-  
+  if (loader) {
+    return (
+      <div className="flex justify-center mt-50">
+        <FadeLoader color="#1fc96f" className="text-center" />
+      </div>
+    );
   }
 
   return (
@@ -132,12 +126,12 @@ useEffect(()=>{
 
             <div className="flex flex-col  ">
               <div className="mt-2 font-semibold">
-                <span className="flex gap-2">
-                  <span>Name:{name}</span>
-                  <span>Framewark:{framework}</span>
-                </span>
+                <h2>Name:{name}</h2>
+                <h2>Framewark:{framework}</h2>
+
                 <h2 className="py-1">Usecase:{useCase}</h2>
                 <h2>dataset:{dataset}</h2>
+                <h2>purchase{purchased}</h2>
               </div>
               <div className="flex-col md:flex sm:flex-row gap-3 mt-7">
                 <Link to="/ModelPurchase">
@@ -149,30 +143,30 @@ useEffect(()=>{
                   </button>
                 </Link>
 
-                {createdBy == user.email ? (
-                  <div className="flex gap-4">
-                    <Link to={`/Update/${_id}`}>
-                      <button className="text-pink-400 btn">
-                        Edit model
-                      </button>
-                    </Link>
-                    <button
-                      onClick={() => handelDelet(_id)}
-                      className="text-pink-400  btn"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                ) : (
-                  ""
-                )}
+               {
+                user.email==createdBy? <div className="flex gap-4">
+                  <Link to={`/Update/${_id}`}>
+                    <button className="text-pink-400 btn">Edit model</button>
+                  </Link>
+                  <button
+                    onClick={() => handelDelet(_id)}
+                    className="text-pink-400  btn"
+                  >
+                    Delete
+                  </button>
+                </div>:""
+               }
+
               </div>
             </div>
           </div>
         </div>
         {/* discirption */}
         <div>
-          <p className="hover:text-blue-300 text-gray-400"><span className="font-semibold text-black">Descriptin</span>       {description}</p>
+          <p className="hover:text-blue-300 text-gray-400">
+            <span className="font-semibold text-black">Descriptin</span>{" "}
+            {description}
+          </p>
         </div>
       </div>
     </div>

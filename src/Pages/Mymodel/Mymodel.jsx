@@ -39,6 +39,9 @@ const Mymodel = () => {
           <ModelCard key={card._id} card={card}></ModelCard>
         ))}
       </div>
+    <div className="text-2xl text-gray-400 flex justify-center items-center py-10">
+        {data.length=='0'?<span>Not Find AI mode </span>:""}
+    </div>
     </div>
   );
 };

@@ -57,8 +57,7 @@ const AllModel = () => {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [framework]); // framework change হলে fetch হবে
-
+  }, [framework]); 
   if (loading) {
     return (
       <div className="flex justify-center mt-50">

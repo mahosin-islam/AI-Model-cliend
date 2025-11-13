@@ -8,7 +8,7 @@ import { Twirl } from "hamburger-react";
 const Navbar = () => {
   const { user, setUser,setThems, userSingOut } = use(AuthContex);
   const [humbur, setHumbur] = useState(false);
-
+ console.log(user)
   const hadelSingOut = () => {
     userSingOut()
       .then(() => {
@@ -46,7 +46,7 @@ console.log(theme)
       p-3 items-center  w-full flex justify-between h-16"
       >
         <div>
-          <h2 className="text-3xl text-white font-bold">AI-Models</h2>
+          <h2 className="sm:text-3xl md:text-2xl text-1xl   text-white font-bold">AI-Models</h2>
         </div>
         <nav className=" gap-4 hidden  md:flex sm:hidden">
           {links}
@@ -137,7 +137,7 @@ console.log(theme)
         </div>
       </div>
       <div
-        className={`mt-18 pl-5 ${
+        className={`mt-18 bg-red-300 pl-5 ${
           humbur ? "flex" : "hidden"
         }  text-2xl font-semibold gap-4 flex-col md:hidden`}
       >

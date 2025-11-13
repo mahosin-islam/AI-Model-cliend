@@ -1,48 +1,27 @@
-import React, { use, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import ModelCard from "../../Componets/ModelCard";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router";
 import { AuthContex } from "../../Contexts/AuthContex";
 
 import { FadeLoader } from "react-spinners";
+import StaticAbout from "../Static/StaticAbout";
+import StaticStart from "../Static/StaticStart";
 
 const Home = () => {
   const [model, setModel] = useState([]);
-  const { user } = use(AuthContex);
   const [loader, setLoader] = useState(true);
-  console.log(user?.accessToken);
 
-  useEffect(() => {
-    const loadModels = async () => {
-      if (!user?.accessToken) return;
-      setLoader(true);
-
-      try {
-        const res = await fetch(
-          "https://server-side-xi.vercel.app/Lates-model",
-          {
-            headers: {
-              authorization: `Bearer ${user.accessToken}`,
-            },
-          }
-        );
-
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-
-        const data = await res.json();
-        console.log(data);
+useEffect(() => {
+    fetch(`https://server-side-xi.vercel.app/Lates-model`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Filter success", data);
         setModel(data);
-      } catch (error) {
-        console.error("Error fetching models:", error);
-      } finally {
         setLoader(false);
-      }
-    };
-
-    loadModels();
-  }, [user?.accessToken]);
+      })
+      .catch((err) => console.log(err));
+  }, []); 
 
   if (loader) {
     return (
@@ -71,6 +50,10 @@ const Home = () => {
         {model?.map((card) => (
           <ModelCard key={card._id} card={card}></ModelCard>
         ))}
+      </div>
+      <div className="my-10">
+        <StaticAbout></StaticAbout>
+        <StaticStart></StaticStart>
       </div>
     </div>
   );

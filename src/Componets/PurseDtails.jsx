@@ -74,12 +74,12 @@ if(loader){
                 <FaArrowLeftLong></FaArrowLeftLong>Back to product{" "}
               </span>
 
-              <div className="flex flex-col  ">
+              <div className="flex flex-col  text-red-500">
                 <div className="mt-2 font-semibold">
-                  <span className="flex-col md:flex sm:flex-row gap-3 mt-3">
-                    <span>Name:{name}</span>
-                    <span>Framewark:{framework}</span>
-                  </span>
+                  
+                    <h2>Name:{name}</h2>
+                    <h2>Framewark:{framework}</h2>
+                
                   <h2 className="py-2">Usecase:{useCase}</h2>
                   <h2>dataset:{dataset}</h2>
                 </div>
