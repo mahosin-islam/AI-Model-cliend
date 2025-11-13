@@ -1,8 +1,7 @@
 import React from "react";
 import { BsFacebook } from "react-icons/bs";
-import { FaApple, FaGooglePlay, FaTwitter } from "react-icons/fa6";
+import { FaApple, FaGooglePlay,  FaXTwitter } from "react-icons/fa6";
 import { FiInstagram } from "react-icons/fi";
-import { ImFacebook2 } from "react-icons/im";
 import { IoCallOutline, IoLogoGithub } from "react-icons/io5";
 import { TfiEmail } from "react-icons/tfi";
 import { Link } from "react-router";
@@ -60,7 +59,7 @@ const Footer = () => {
             <div>
               <span className="mt-2 text-2xl flex gap-5">
                 <BsFacebook className="bg-blue-400 rounded-full p-1"></BsFacebook>
-                <FaTwitter className="bg-blue-400 rounded-full p-1"></FaTwitter>
+               <FaXTwitter></FaXTwitter>
                 <FiInstagram className="bg-red-400 text-white rounded-full p-1"></FiInstagram>
               </span>
             </div>
