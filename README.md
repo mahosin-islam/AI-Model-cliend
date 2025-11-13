@@ -1,4 +1,4 @@
-## project name: IP-Mode
+## project name: AI-Model
 
 ## wevsite LiveURL=https://ai-modes.netlify.app/
 
