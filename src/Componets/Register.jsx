@@ -22,6 +22,7 @@ const Register = () => {
       toast(
         "Must contain at least one uppercase and one lowercase letter Must be at least 6  characters long"
       );
+      return;
     }
     creatUser(email, password)
       .then((res) => {
