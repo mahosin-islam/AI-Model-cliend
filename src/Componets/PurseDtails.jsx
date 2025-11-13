@@ -7,12 +7,12 @@ import { FadeLoader } from "react-spinners";
 const PurseDtails = () => {
   const navigate = useNavigate();
   const purse = useLoaderData();
-  const {user}=use(AuthContex)
-   const [model, setModel]=useState([])
-    const [loader, setLoader]=useState(true)
-  const{id}=useParams()
-  console.log(id)
-  console.log(purse)
+  const { user, thems } = use(AuthContex);
+  const [model, setModel] = useState([]);
+  const [loader, setLoader] = useState(true);
+  const { id } = useParams();
+  console.log(id);
+  console.log(purse);
   const { name, _id, framework, useCase, dataset, description, image } = model;
   const handelDelet = (id) => {
     fetch(`https://server-side-xi.vercel.app/purchase/${id}`, {
@@ -25,37 +25,37 @@ const PurseDtails = () => {
       })
       .catch((err) => console.log(err));
   };
-// fatch data from servrside
-useEffect(()=>{
-  
- fetch(`https://server-side-xi.vercel.app/purchase/${id}`,{
-  headers : {
+  // fatch data from servrside
+  useEffect(() => {
+    fetch(`https://server-side-xi.vercel.app/purchase/${id}`, {
+      headers: {
         authorization: `Beare ${user?.accessToken}`,
       },
- })
- .then(res=>res.json())
- .then(data=>{
- console.log('helo', data)
- setModel(data)
- setLoader(false)
- })
- .catch(err=>console.log(err))
-},[user,id])
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("helo", data);
+        setModel(data);
+        setLoader(false);
+      })
+      .catch((err) => console.log(err));
+  }, [user, id]);
 
-
-if(loader){
-    return <div className="flex justify-center mt-50">
-    <FadeLoader color="#1fc96f" className="text-center" />
-  </div>
+  if (loader) {
+    return (
+      <div className="flex justify-center mt-50">
+        <FadeLoader color="#1fc96f" className="text-center" />
+      </div>
+    );
   }
 
   return (
-    <div>
-      <div className="bg-base-200 py-8">
-        <h2 className="text-center font-semibold text-2xl text-[#9f62f2] mb-5">
-          My Model Purchase Dtails
-        </h2>
-        <div className="p-3 w-8/12 mx-auto rounded-2xl py-4  bg-white shadow-2xl">
+    <div className={`text-${thems == "dark" ? "black" : ""} my-5`}>
+      <div className="bg-base-200 ">
+        <div className=" border-2 border-gray-400  p-3 w-8/12 mx-auto rounded-2xl py-4  bg-white shadow-2xl">
+          <h2 className="text-center font-semibold text-2xl py-2">
+            My Model Purchase Dtails{" "}
+          </h2>
           <div className=" grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div className="overflow-hidden img col-span-1">
               <img
@@ -74,12 +74,11 @@ if(loader){
                 <FaArrowLeftLong></FaArrowLeftLong>Back to product{" "}
               </span>
 
-              <div className="flex flex-col  text-red-500">
+              <div className="flex flex-col  ">
                 <div className="mt-2 font-semibold">
-                  
-                    <h2>Name:{name}</h2>
-                    <h2>Framewark:{framework}</h2>
-                
+                  <h2>Name:{name}</h2>
+                  <h2>Framewark:{framework}</h2>
+
                   <h2 className="py-2">Usecase:{useCase}</h2>
                   <h2>dataset:{dataset}</h2>
                 </div>
@@ -96,7 +95,7 @@ if(loader){
           </div>
           {/* discirption */}
           <div>
-            <p className="hover:text-blue-300 text-gray-400">
+            <p className=" text-gray-400">
               <span className="font-semibold text-black">Descriptin</span>{" "}
               {description}
             </p>

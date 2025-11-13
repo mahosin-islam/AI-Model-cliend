@@ -7,7 +7,7 @@ const StaticStart = () => {
     <div className=" mt-5">
      <div className="flex justify-center text-center">
         <div>
-            <button className="text-2xl font-bold ">Get Stard</button>
+            <button className="text-2xl hover:bg-pink-700 transform duration-500 font-bold px-6 p-2 rounded-2xl bg-pink-500 text-white">Get Stard</button>
             <p>Start exploring AI models and boost your skills today</p>
         </div>
      </div>

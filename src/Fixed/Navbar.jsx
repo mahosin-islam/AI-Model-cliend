@@ -137,7 +137,7 @@ console.log(theme)
         </div>
       </div>
       <div
-        className={`mt-18 bg-red-300 pl-5 ${
+        className={`mt-18  pl-5 ${
           humbur ? "flex" : "hidden"
         }  text-2xl font-semibold gap-4 flex-col md:hidden`}
       >

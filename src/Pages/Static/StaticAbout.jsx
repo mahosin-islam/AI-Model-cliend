@@ -24,7 +24,7 @@ const StaticAbout = () => {
           </span>
 
           <span className="text pl-4">
-            <h2 className="font-semibold">name: Education AI</h2>
+            <h2 className="font-semibold">Name: Education AI</h2>
             <p>useCase: Study help, question answering, learning assistance</p>
           </span>
         </div>

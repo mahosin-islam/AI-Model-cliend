@@ -51,7 +51,7 @@ useEffect(() => {
           <ModelCard key={card._id} card={card}></ModelCard>
         ))}
       </div>
-      <div className="my-10">
+      <div className="mt-10">
         <StaticAbout></StaticAbout>
         <StaticStart></StaticStart>
       </div>

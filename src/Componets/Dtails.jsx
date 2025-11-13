@@ -5,7 +5,7 @@ import { AuthContex } from "../Contexts/AuthContex";
 import { FadeLoader } from "react-spinners";
 
 const Dtails = () => {
-  const { user } = use(AuthContex);
+  const { user,thems } = use(AuthContex);
   const [model, setModel] = useState([]);
   const [loader, setLoader] = useState(true);
   const { id } = useParams();
@@ -19,6 +19,7 @@ const Dtails = () => {
     dataset,
     description,
     image,
+    createdAt
   } = model;
 
   const navigare = useNavigate();
@@ -104,8 +105,10 @@ const Dtails = () => {
   }
 
   return (
-    <div className="bg-base-200 py-10 text-red-500">
-      <div className="p-3 w-8/12 mx-auto rounded-2xl py-4  bg-white shadow-2xl">
+    <div className={`text-${thems=='dark'?'black':''} my-5`}>
+   
+      <div className="p-3 w-8/12 border-2 border-gray-400 mx-auto rounded-2xl py-4  bg-white shadow-2xl">
+         <h2 className="text-center font-semibold text-2xl py-2">Details pages </h2>
         <div className=" grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div className="overflow-hidden img col-span-1">
             <img
@@ -131,7 +134,8 @@ const Dtails = () => {
 
                 <h2 className="py-1">Usecase:{useCase}</h2>
                 <h2>dataset:{dataset}</h2>
-                <h2>purchase{purchased}</h2>
+                <h2>purchase:{purchased}</h2>
+                <h2>Time{createdAt}</h2>
               </div>
               <div className="flex-col md:flex sm:flex-row gap-3 mt-7">
                 <Link to="/ModelPurchase">
@@ -163,7 +167,7 @@ const Dtails = () => {
         </div>
         {/* discirption */}
         <div>
-          <p className="hover:text-blue-300 text-gray-400">
+          <p className=" text-gray-400">
             <span className="font-semibold text-black">Descriptin</span>{" "}
             {description}
           </p>

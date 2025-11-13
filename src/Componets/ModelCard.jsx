@@ -16,7 +16,7 @@ const ModelCard = ({ card }) => {
               <h2 className="card-title">Nane:{card.name}</h2>
            <div className=" justify-between ">
              <p>Framework:{card.framework}</p>
-            <h2>Time:{card.createdAt}</h2>
+          
             <h2>useCase:{card.useCase}</h2>
       
            </div>
